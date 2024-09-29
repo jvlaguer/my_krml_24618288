@@ -100,9 +100,15 @@ def evaluate_cv_predictions_reg(X, y, model):
   function to display mean, std, and median cross validation scores
   """
 
-  dict_eval_metrics = {'neg_root_mean_squared_error': rmse,
-             'neg_mean_absolute_error': mae,
+  from matplotlib import pyplot as plt
+  from sklearn.model_selection import cross_val_score
+  import numpy as np
+  import pandas as pd
+
+  dict_eval_metrics = {'neg_root_mean_squared_error': 'rmse',
+             'neg_mean_absolute_error': 'mae',
             }
+
   fig, ax = plt.subplots(1,2, figsize = (20,5))
   plt.tight_layout(pad=2)
   ax = ax.flatten()

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "my_krml_24618288"
-version = "2024.0.3.4"
+version = "2024.0.3.5"
 description = "A package for doing great things!"
 authors = ["JVL"]
 license = "None"
