@@ -104,6 +104,7 @@ def evaluate_cv_predictions_reg(X, y, model, cv):
   from sklearn.model_selection import cross_val_score
   import numpy as np
   import pandas as pd
+  import seaborn as sns
 
   dict_eval_metrics = {'neg_root_mean_squared_error': 'rmse',
              'neg_mean_absolute_error': 'mae',
