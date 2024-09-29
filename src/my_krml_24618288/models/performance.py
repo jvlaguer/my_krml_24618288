@@ -93,3 +93,33 @@ def plot_auroc_curve(y_actuals, y_probs):
     roc_display.figure_.set_size_inches(5,5)
     plt.plot([0, 1], [0.5, 0.5], color = 'g', linestyle='--')
     plt.show()
+
+
+def evaluate_cv_predictions_reg(X, y, model):
+  """
+  function to display mean, std, and median cross validation scores
+  """
+
+  dict_eval_metrics = {'neg_root_mean_squared_error': rmse,
+             'neg_mean_absolute_error': mae,
+            }
+  fig, ax = plt.subplots(1,2, figsize = (20,5))
+  plt.tight_layout(pad=2)
+  ax = ax.flatten()
+
+  score_list_mean = []
+  score_list_std = []
+  score_list_median = []
+
+  for idx,key in enumerate(dict_eval_metrics.keys()):
+    scores = cross_val_score(model, X, y, scoring=key, cv=cv, n_jobs=-1)
+
+    sns.boxplot(scores, ax=ax[idx])
+    ax[idx].set_title(key)
+
+    score_list_mean.append(np.mean(scores * -1))
+    score_list_std.append(np.std(scores * -1))
+    score_list_median.append(np.median(scores * -1))
+
+  display(pd.DataFrame({'Mean':score_list_mean, 'STD':score_list_std, 'Median':score_list_median}, index=dict_eval_metrics.keys()))
+  plt.show()
