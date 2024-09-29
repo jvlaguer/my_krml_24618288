@@ -95,7 +95,7 @@ def plot_auroc_curve(y_actuals, y_probs):
     plt.show()
 
 
-def evaluate_cv_predictions_reg(X, y, model):
+def evaluate_cv_predictions_reg(X, y, model, cv):
   """
   function to display mean, std, and median cross validation scores
   """
